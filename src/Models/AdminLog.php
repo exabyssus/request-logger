@@ -23,4 +23,9 @@ class AdminLog extends Model
         'http_referer',
         'http_cookie'
     ];
+
+    public function __toString()
+    {
+        return $this->user_name;
+    }
 }

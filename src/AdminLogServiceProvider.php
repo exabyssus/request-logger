@@ -2,11 +2,10 @@
 
 namespace Mungurs\AdminLog;
 
-
-use App\Http\Middleware\LogAdminRequests;
-use Arbory\Merchant\Controllers\Admin\AdminLogController;
+use Mungurs\AdminLog\Middleware\LogAdminRequests;
+use Mungurs\AdminLog\Controllers\Admin\AdminLogController;
 use Illuminate\Support\ServiceProvider;
-use Arbory\Base\Support\Facades\Admin;
+use \Arbory\Base\Support\Facades\Admin;
 
 class AdminLogServiceProvider extends ServiceProvider
 {
@@ -34,14 +33,6 @@ class AdminLogServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        Admin::modules()->register(AdminLogController::class);
-        $menuConfig = config('arbory.menu', null);
-        if ($menuConfig === null) {
-            throw new \Exception('Missing menu in arbory config');
-        }
-        // Append new menu item
-        $menuConfig = $menuConfig[] = [AdminLogController::class];
-        // Store changes back in config
-        config(['arbory.menu' => $menuConfig]);
+        
     }
 }
