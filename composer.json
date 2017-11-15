@@ -1,0 +1,12 @@
+{
+    "name": "mungurs/request-logger",
+    "description": "Arbory admin request logger",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Martins Ungurs",
+            "email": "martins.ungurs@cube.lv"
+        }
+    ],
+    "require": {}
+}
