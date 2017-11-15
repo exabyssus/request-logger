@@ -8,5 +8,11 @@
             "email": "martins.ungurs@cube.lv"
         }
     ],
-    "require": {}
+    "autoload": {
+        "psr-4": { "Mungurs\\AdminLog\\" : "src/" }
+    },
+    "require": {
+        "laravel/framework": "5.4.*",
+        "arbory/arbory": "dev-master"
+    }
 }
