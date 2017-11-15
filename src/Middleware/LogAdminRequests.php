@@ -25,6 +25,12 @@ class LogAdminRequests
         $logItem = new AdminLog();
         $user = Sentinel::getUser();
 
+        //TODO: save all data
+        //TODO: hide sensitive data $hideFields
+        //TODO: add cron and config for cleaning request log table
+        //TODO: add readme with setup info
+        //TODO: move to correct package namespace
+
         $logItem->fill(
             [
                 'user_name' => $user ? $user->getUserLogin() : null,
