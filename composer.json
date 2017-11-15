@@ -14,5 +14,6 @@
     "require": {
         "laravel/framework": "5.4.*",
         "arbory/arbory": "dev-master"
-    }
+    },
+    "minimum-stability" : "dev"
 }
