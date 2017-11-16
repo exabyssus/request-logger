@@ -3,9 +3,7 @@
 namespace Mungurs\AdminLog;
 
 use Mungurs\AdminLog\Middleware\LogAdminRequests;
-use Mungurs\AdminLog\Controllers\Admin\AdminLogController;
 use Illuminate\Support\ServiceProvider;
-use \Arbory\Base\Support\Facades\Admin;
 
 class AdminLogServiceProvider extends ServiceProvider
 {
