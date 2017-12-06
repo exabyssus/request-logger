@@ -20,8 +20,9 @@ class AdminLogServiceProvider extends ServiceProvider
 
         $this->loadMigrationsFrom(__DIR__ . '/Migrations');
         $this->publishes([
-            __DIR__ . DIRECTORY_SEPARATOR . 'Config' . DIRECTORY_SEPARATOR . 'admin-log.php' => config_path('admin-log.php')
+            __DIR__ . '/Config/admin-log.php' => config_path('admin-log.php')
         ]);
+        $this->mergeConfigFrom(__DIR__ . '/Config/admin-log.php', 'admin-log');
     }
 
     /**
