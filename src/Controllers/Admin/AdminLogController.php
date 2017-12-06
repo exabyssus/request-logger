@@ -2,6 +2,7 @@
 
 namespace Mungurs\AdminLog\Controllers\Admin;
 
+use Mungurs\AdminLog\Admin\Form\Serialization;
 use App\Http\Controllers\Controller;
 use Arbory\Base\Admin\Form;
 use Arbory\Base\Admin\Grid;
@@ -38,9 +39,9 @@ class AdminLogController extends Controller
             $form->addField(new Text('request_uri'));
             $form->addField(new Text('http_content_type'));
             $form->addField(new Text('http_referer'));
-            $form->addField(new Textarea('session'));
-            $form->addField(new Textarea('content'));
-            $form->addField(new Textarea('http_cookie'));
+            $form->addField(new Serialization('session'));
+            $form->addField(new Serialization('content'));
+            $form->addField(new Serialization('http_cookie'));
 
         });
 
