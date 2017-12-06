@@ -24,8 +24,6 @@ class LogAdminRequests
 
         $logItem = new AdminLog();
         $user = Sentinel::getUser();
-
-        //TODO: save all data
         //TODO: hide sensitive data $hideFields
         //TODO: add cron and config for cleaning request log table
         //TODO: add readme with setup info
@@ -34,8 +32,16 @@ class LogAdminRequests
         $logItem->fill(
             [
                 'user_name' => $user ? $user->getUserLogin() : null,
-                'request_uri' => $request->getUri(),
-                'ip' => $request->getClientIp()
+                'request_uri' => $request->getUri(), // request schema + host + uri
+                'ip' => $request->getClientIp(),
+                'ips' => join(',', $request->ips()),
+                'request_method' => $request->getRealMethod(),
+                'http_referer' => join(',', array_wrap($request->header('HTTP_REFERER', null))),
+                'user_agent' => $request->userAgent(),
+                'http_content_type' => $request->getContentType(),
+                'http_cookie' => serialize($request->cookies->all()),
+                'session' => serialize($request->session()->all()),
+                'content' => serialize($request->getContent()),
             ]
         );
         $logItem->save();

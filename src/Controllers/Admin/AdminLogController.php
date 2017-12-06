@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Model;
 use Arbory\Base\Admin\Form\Fields\Hidden;
 use Mungurs\AdminLog\Models\AdminLog;
 use Arbory\Base\Admin\Form\Fields\Text;
+use Arbory\Base\Admin\Form\Fields\Textarea;
 
 class AdminLogController extends Controller
 {
@@ -24,16 +25,24 @@ class AdminLogController extends Controller
      * @param Model $model
      * @return Form
      */
-    protected function form( Model $model )
+    protected function form(Model $model)
     {
-        $form = $this->module()->form( $model, function( Form $form )
-        {
-            $form->addField( new Hidden( 'id' ) );
-            $form->addField( new Text( 'user_name' ) );
-            $form->addField( new Text( 'request_uri' ) );
-            $form->addField( new Text( 'ip' ) );
-            $form->addField( new Text( 'created_at' ) );
-        } );
+        $form = $this->module()->form($model, function (Form $form) {
+            $form->addField(new Hidden('id'));
+            $form->addField(new Text('created_at'));
+            $form->addField(new Text('user_name'));
+            $form->addField(new Text('user_agent'));
+            $form->addField(new Text('ip'));
+            $form->addField(new Text('ips'));
+            $form->addField(new Text('request_method'));
+            $form->addField(new Text('request_uri'));
+            $form->addField(new Text('http_content_type'));
+            $form->addField(new Text('http_referer'));
+            $form->addField(new Textarea('session'));
+            $form->addField(new Textarea('content'));
+            $form->addField(new Textarea('http_cookie'));
+
+        });
 
         return $form;
     }
@@ -43,12 +52,12 @@ class AdminLogController extends Controller
      */
     public function grid()
     {
-        return $this->module()->grid( $this->resource(), function ( Grid $grid )
-        {
-            $grid->column( 'user_name' );
-            $grid->column( 'request_uri' );
-            $grid->column( 'ip' );
-            $grid->column( 'created_at' );
-        } )->tools(['search']);
+        return $this->module()->grid($this->resource(), function (Grid $grid) {
+            $grid->column('created_at');
+            $grid->column('user_name');
+            $grid->column('request_uri');
+            $grid->column('ip');
+            $grid->column('created_at');
+        })->tools(['search']);
     }
 }

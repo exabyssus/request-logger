@@ -1,4 +1,5 @@
 <?php
+
 namespace Mungurs\AdminLog\Models;
 
 use Illuminate\Database\Eloquent\Model;
@@ -15,13 +16,16 @@ class AdminLog extends Model
 
     protected $fillable = [
         'user_name',
-        'ip',
-        'forwarded_ip',
-        'request_method',
         'request_uri',
-        'user_agent',
+        'ip',
+        'ips',
+        'request_method',
         'http_referer',
-        'http_cookie'
+        'user_agent',
+        'http_content_type',
+        'http_cookie',
+        'session',
+        'content'
     ];
 
     public function __toString()
