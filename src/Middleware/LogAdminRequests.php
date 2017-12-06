@@ -26,9 +26,6 @@ class LogAdminRequests
         $sanitizer = new Sanitizer( config('admin-log.sanitizer'));
         $logItem = new AdminLog();
         $user = Sentinel::getUser();
-        //TODO: hide sensitive data $hideFields -> test http://www.phpliveregex.com/
-        //TODO: add cron and config for cleaning request log table
-        //TODO: add readme with setup info
         //TODO: move to correct package namespace
 
         $logItem->fill(
