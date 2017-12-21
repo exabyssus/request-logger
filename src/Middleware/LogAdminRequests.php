@@ -40,7 +40,7 @@ class LogAdminRequests
                 'http_content_type' => $request->getContentType(),
                 'http_cookie' => serialize($sanitizer->sanitize($request->cookies->all())),
                 'session' => serialize($sanitizer->sanitize($request->session()->all())),
-                'content' => serialize($sanitizer->sanitize($request->getContent())),
+                'content' => serialize($sanitizer->sanitize($request->all())),
             ]
         );
         $logItem->save();
