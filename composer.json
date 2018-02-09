@@ -13,7 +13,7 @@
     },
     "require": {
         "laravel/framework": "5.4.*",
-        "arbory/arbory": "dev-master"
+        "arbory/arbory": ">=0.1.2"
     },
     "minimum-stability" : "dev"
 }
