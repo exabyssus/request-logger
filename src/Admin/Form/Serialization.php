@@ -1,6 +1,6 @@
 <?php
 
-namespace Mungurs\AdminLog\Admin\Form;
+namespace Arbory\AdminLog\Admin\Form;
 
 use Arbory\Base\Admin\Form\Fields\AbstractField;
 use Arbory\Base\Html\Elements\Element;

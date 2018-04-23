@@ -1,15 +1,15 @@
 <?php
 
-namespace Mungurs\AdminLog\Controllers\Admin;
+namespace Arbory\AdminLog\Controllers\Admin;
 
-use Mungurs\AdminLog\Admin\Form\Serialization;
+use Arbory\AdminLog\Admin\Form\Serialization;
 use App\Http\Controllers\Controller;
 use Arbory\Base\Admin\Form;
 use Arbory\Base\Admin\Grid;
 use Arbory\Base\Admin\Traits\Crudify;
 use Illuminate\Database\Eloquent\Model;
 use Arbory\Base\Admin\Form\Fields\Hidden;
-use Mungurs\AdminLog\Models\AdminLog;
+use Arbory\AdminLog\Models\AdminLog;
 use Arbory\Base\Admin\Form\Fields\Text;
 use Arbory\Base\Admin\Form\Fields\Textarea;
 

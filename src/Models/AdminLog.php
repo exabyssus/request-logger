@@ -1,6 +1,6 @@
 <?php
 
-namespace Mungurs\AdminLog\Models;
+namespace Arbory\AdminLog\Models;
 
 use Illuminate\Database\Eloquent\Model;
 

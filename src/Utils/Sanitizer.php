@@ -1,6 +1,6 @@
 <?php
 
-namespace Mungurs\AdminLog\Utils;
+namespace Arbory\AdminLog\Utils;
 
 class Sanitizer
 {

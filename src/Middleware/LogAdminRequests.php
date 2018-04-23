@@ -1,10 +1,10 @@
 <?php
 
-namespace Mungurs\AdminLog\Middleware;
+namespace Arbory\AdminLog\Middleware;
 
 use Closure;
-use Mungurs\AdminLog\Models\AdminLog;
-use Mungurs\AdminLog\Utils\Sanitizer;
+use Arbory\AdminLog\Models\AdminLog;
+use Arbory\AdminLog\Utils\Sanitizer;
 use Sentinel;
 use Illuminate\Http\Request;
 

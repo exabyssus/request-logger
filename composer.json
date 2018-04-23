@@ -1,5 +1,5 @@
 {
-    "name": "mungurs/request-logger",
+    "name": "arbory/request-logger",
     "description": "Arbory admin request logger",
     "type": "library",
     "authors": [
@@ -9,7 +9,7 @@
         }
     ],
     "autoload": {
-        "psr-4": { "Mungurs\\AdminLog\\" : "src/" }
+        "psr-4": { "Arbory\\AdminLog\\" : "src/" }
     },
     "require": {
         "laravel/framework": "5.4.*",

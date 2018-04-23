@@ -1,8 +1,8 @@
 <?php
 
-namespace Mungurs\AdminLog;
+namespace Arbory\AdminLog;
 
-use Mungurs\AdminLog\Middleware\LogAdminRequests;
+use Arbory\AdminLog\Middleware\LogAdminRequests;
 use Illuminate\Support\ServiceProvider;
 
 class AdminLogServiceProvider extends ServiceProvider
