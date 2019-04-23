@@ -25,14 +25,16 @@ class Sanitizer
     protected $sensitiveKeyPatterns;
 
     /**
-     * Sanitizer constructor.
-     * @param array $config
+     * Sanitizer constructor
      */
-    public function __construct($config)
+    public function __construct()
     {
-        $this->config = $config;
+        $this->config = config('admin-log.sanitizer');
     }
 
+    /**
+     * @return void
+     */
     protected function setSensitiveStringPatterns()
     {
         $identifiers = array_get($this->config, 'sensitive_string_identifiers');
@@ -50,6 +52,7 @@ class Sanitizer
         if (!isset($this->sensitiveStringPatterns)) {
             $this->setSensitiveStringPatterns();
         }
+
         return $this->sensitiveStringPatterns;
     }
 
@@ -61,6 +64,7 @@ class Sanitizer
         if (!$this->removeValueNotification) {
             $this->removeValueNotification = array_get($this->config, 'removed_value_notification');
         }
+
         return $this->removeValueNotification;
     }
 
@@ -75,6 +79,7 @@ class Sanitizer
         } elseif (is_array($value)) {
             return $this->sanitizeArray($value);
         }
+
         return $value;
     }
 
@@ -98,6 +103,7 @@ class Sanitizer
     protected function sanitizeArray($array)
     {
         $array = $this->sanitizeArrayValues($array);
+
         return $this->sanitizeString(print_r($array, true));
     }
 
@@ -114,7 +120,7 @@ class Sanitizer
                     if ($value instanceof \Closure) {
                         $value = null;
                     }
-                    $value       = (array)$value;
+                    $value = (array)$value;
                     $array[$key] = $value;
                 }
 
@@ -128,6 +134,7 @@ class Sanitizer
                 }
             }
         }
+
         return $array;
     }
 
@@ -144,6 +151,7 @@ class Sanitizer
                 return true;
             }
         }
+
         return false;
     }
 
@@ -158,6 +166,7 @@ class Sanitizer
                 array_get($this->config, 'sensitive_string_identifiers')
             );
         }
+
         return $this->sensitiveKeyPatterns;
     }
 }

@@ -4,32 +4,60 @@ namespace Arbory\AdminLog\Admin\Form;
 
 use Arbory\Base\Admin\Form\Fields\Renderer\BaseRenderer;
 use Arbory\Base\Html\Elements\Element;
-use Arbory\Base\Html\Elements\Inputs\AbstractInputField;
 use Arbory\Base\Html\Html;
 
-/**
- * Class InputFieldRenderer
- * @package Arbory\Base\Admin\Form\Fields\Renderer
- */
 class SerializationRenderer extends BaseRenderer
 {
     /**
-     * @return AbstractInputField
+     * @return Element
      */
-    protected function getInput()
+    protected function getInput(): Element
     {
         $content = unserialize($this->field->getValue());
-        return Html::div()->append('<pre><code>' . print_r($content, true) . '</code></pre>');
+
+        return Html::div(
+            Html::pre(
+                Html::code(print_r($content, true))->addAttributes([
+                    'style' => $this->getStyle([
+                        'white-space' => 'pre-wrap'
+                    ])
+                ])
+            )
+        )->addAttributes([
+            'style' => $this->getStyle([
+                'line-height' => '1.2',
+                'font-size' => '12px',
+                'background-color' => '#f8f8f8',
+                'border' => '1px solid #d4d4d4',
+                'margin' => 0,
+                'padding' => '0 12px',
+            ])
+        ]);
     }
 
     /**
      * @return Element
      */
-    public function render()
+    public function render(): Element
     {
         $input = $this->getInput();
-        $label = Html::label( $this->field->getLabel() );
+        $label = Html::label($this->field->getLabel());
 
-        return $this->buildField( $label, $input );
+        return $this->buildField($label, $input);
+    }
+
+    /**
+     * @param array|null $style
+     * @return string
+     */
+    public function getStyle(?array $style = []): string
+    {
+        $return = '';
+
+        foreach ($style as $rule => $value) {
+            $return .= implode(': ', [$rule, $value]) . ';';
+        }
+
+        return $return;
     }
 }

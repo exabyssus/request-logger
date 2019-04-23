@@ -4,16 +4,16 @@ namespace Arbory\AdminLog\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-/**
- * Class Order
- *
- * @package Arbory\Merchant\Models
- * @mixin \Eloquent
- */
 class AdminLog extends Model
 {
+    /**
+     * @var string
+     */
     protected $table = 'admin_log';
 
+    /**
+     * @var array
+     */
     protected $fillable = [
         'user_name',
         'request_uri',
@@ -28,8 +28,11 @@ class AdminLog extends Model
         'content'
     ];
 
-    public function __toString()
+    /**
+     * @return string
+     */
+    public function __toString(): string
     {
-        return $this->user_name;
+        return (string)$this->user_name;
     }
 }
