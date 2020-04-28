@@ -15,4 +15,8 @@ return [
     'cleanup' => [
         'retain_for_days' => 365,
     ],
+    /**
+     * Session keys to exclude from session field when saving request to db
+     */
+    'session_blacklist_keys' => [],
 ];

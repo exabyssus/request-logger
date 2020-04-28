@@ -32,6 +32,7 @@ class LogAdminRequests
     public function __construct(Sentinel $sentinel)
     {
         $this->sentinel = $sentinel;
+        $this->config = config('admin-log');
     }
 
     /**
@@ -54,10 +55,23 @@ class LogAdminRequests
             'user_agent' => $request->userAgent(),
             'http_content_type' => $request->getContentType(),
             'http_cookie' => serialize($sanitizer->sanitize($request->cookies->all())),
-            'session' => serialize($sanitizer->sanitize($request->session()->all())),
+            'session' => serialize($sanitizer->sanitize($this->getSession())),
             'content' => serialize($sanitizer->sanitize($request->all())),
         ]);
 
         return $next($request);
     }
+
+    /**
+     * @return array
+     */
+    private function getSession()
+    {
+        $session = request()->session()->all();
+
+        return collect($session)
+            ->except($this->config['session_blacklist_keys'])
+            ->toArray();
+    }
+
 }
