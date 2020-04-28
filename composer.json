@@ -9,9 +9,18 @@
         }
     ],
     "autoload": {
-        "psr-4": { "Arbory\\AdminLog\\" : "src/" }
+        "psr-4": {
+            "Arbory\\AdminLog\\": "src/"
+        }
     },
     "require": {
         "arbory/arbory": ">=0.1.2|0.2.*"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Arbory\\AdminLog\\AdminLogServiceProvider"
+            ]
+        }
     }
 }

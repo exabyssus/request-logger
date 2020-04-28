@@ -2,7 +2,9 @@
 
 namespace Arbory\AdminLog;
 
-use Arbory\AdminLog\Middleware\LogAdminRequests;
+use Arbory\AdminLog\Console\Commands\CleanupAdminLog;
+use Arbory\AdminLog\Http\Middleware\LogAdminRequests;
+use Illuminate\Routing\Router;
 use Illuminate\Support\ServiceProvider;
 
 class AdminLogServiceProvider extends ServiceProvider
@@ -10,19 +12,32 @@ class AdminLogServiceProvider extends ServiceProvider
     /**
      * Bootstrap the application services.
      *
+     * @param Router $router
      * @return void
      */
-    public function boot(\Illuminate\Routing\Router $router)
+    public function boot(Router $router)
     {
         if ($router->hasMiddlewareGroup('admin')) {
             $router->pushMiddlewareToGroup('admin', LogAdminRequests::class);
         }
 
-        $this->loadMigrationsFrom(__DIR__ . '/Migrations');
         $this->publishes([
-            __DIR__ . '/Config/admin-log.php' => config_path('admin-log.php')
-        ]);
-        $this->mergeConfigFrom(__DIR__ . '/Config/admin-log.php', 'admin-log');
+            __DIR__ . '/../config/admin-log.php' => config_path('admin-log.php')
+        ], 'config');
+
+        $this->publishes([
+            __DIR__ . '/../resources/lang/' => resource_path('lang/vendor/admin-log')
+        ], 'translations');
+
+        $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
+
+        $this->loadTranslationsFrom(__DIR__ . '/../resources/lang/', 'admin-log');
+
+        if ($this->app->runningInConsole()) {
+            $this->commands([
+                CleanupAdminLog::class,
+            ]);
+        }
     }
 
     /**
@@ -32,6 +47,6 @@ class AdminLogServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        
+        $this->mergeConfigFrom(__DIR__.'/../config/admin-log.php', 'admin-log');
     }
 }

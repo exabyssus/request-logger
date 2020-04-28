@@ -11,5 +11,8 @@ return [
             '(\S*)password(\S*).*',
         ],
         'removed_value_notification' => 'value_removed_by_admin_log'
-    ]
+    ],
+    'cleanup' => [
+        'retain_for_days' => 365,
+    ],
 ];
