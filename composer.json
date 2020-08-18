@@ -14,7 +14,7 @@
         }
     },
     "require": {
-        "arbory/arbory": ">=0.1.2|0.2.*"
+        "arbory/arbory": "^1.0"
     },
     "extra": {
         "laravel": {
