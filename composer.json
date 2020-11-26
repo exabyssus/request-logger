@@ -13,7 +13,9 @@
             "Arbory\\AdminLog\\": "src/"
         }
     },
-    "require": {},
+    "require": {
+        "arbory/arbory": "^1.0"
+    },
     "extra": {
         "laravel": {
             "providers": [

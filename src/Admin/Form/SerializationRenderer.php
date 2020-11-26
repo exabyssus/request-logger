@@ -2,12 +2,22 @@
 
 namespace Arbory\AdminLog\Admin\Form;
 
-use Arbory\Base\Admin\Form\Fields\Renderer\BaseRenderer;
+use Arbory\Base\Admin\Form\Fields\FieldInterface;
+use Arbory\Base\Admin\Form\Fields\Renderer\GenericRenderer;
 use Arbory\Base\Html\Elements\Element;
 use Arbory\Base\Html\Html;
 
-class SerializationRenderer extends BaseRenderer
+class SerializationRenderer extends GenericRenderer
 {
+    /**
+     * SerializationRenderer constructor.
+     * @param FieldInterface $field
+     */
+    public function __construct(FieldInterface $field)
+    {
+        $this->field = $field;
+    }
+
     /**
      * @return Element
      */
@@ -40,10 +50,7 @@ class SerializationRenderer extends BaseRenderer
      */
     public function render(): Element
     {
-        $input = $this->getInput();
-        $label = Html::label($this->field->getLabel());
-
-        return $this->buildField($label, $input);
+        return $this->getInput();
     }
 
     /**
